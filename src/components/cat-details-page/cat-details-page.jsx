@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const CatDetailsPage = () => {
     return (
         <div className="cat-details">

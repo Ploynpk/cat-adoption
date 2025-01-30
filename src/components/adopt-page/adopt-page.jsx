@@ -24,13 +24,15 @@ const tableHeaders = [
 
 const AdoptPage = () => {
     const [catList, setCatList] = useState([]);
-
+    // check this out 
     useEffect(() => {
         getTableData('NewDatabase').then((data) => {
             console.log(data);
             setCatList(data.records);
         });
     }, []);
+
+
     return (
         <div className="adopt-page">
             <h1>Adopt One of These Cats!</h1>
@@ -42,6 +44,7 @@ const AdoptPage = () => {
                 </thead>
                 <tbody>
                     {catList.map((catInfo) => {
+                       // console.log('catinfo-->' ,catInfo)
                         return (
                             <tr className="cat-summary">
                                 <td>
@@ -54,8 +57,10 @@ const AdoptPage = () => {
                                 </td>
                                 <td>{catInfo.fields.age}</td>
                                 <td>{catInfo.fields.description}</td>
-                                <td>{catInfo.fields.vaccinated}</td>
-                                <td>{catInfo.fields.microchipped}</td>
+                                {/* check if the cat is vaccinated */}
+                                <td>{catInfo.fields.vaccinated === 0 ? 'not vaccinated': 'vaccinated'}</td>
+                                {/* check if the cat has microchipped */}
+                                <td>{catInfo.fields.microchipped === 0 ? 'No' : 'Yes'}</td>
                             </tr>
                         );
                     })}
